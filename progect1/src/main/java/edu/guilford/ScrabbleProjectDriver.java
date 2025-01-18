@@ -48,49 +48,49 @@ public class ScrabbleProjectDriver {
         for (String word : testWords) {
             System.out.printf("Word: %-15s Score: %d\n", word, standardSet.getWordScore(word));
         }
-        // Evaluate words in frankenstein.txt
-        // try {
-        //ArrayList<String> words = new ArrayList<>();
-        //BufferedReader reader = new BufferedReader(new FileReader("progect1/src/main/resources/frankenstein.txt"));
-        //String line;
+         // Evaluate words in frankenstein.txt
+         try {
+        ArrayList<String> words = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader("progect1/src/main/resources/frankenstein.txt"));
+        String line;
 
-        //while ((line = reader.readLine()) != null) {
-       //     words.add(line.trim());
-        //}
-        //reader.close();
+        while ((line = reader.readLine()) != null) {
+        words.add(line.trim());
+        }
+        reader.close();
 
-        //String highestScoringWord = "";
-        //int highestScore = 0;
-        //String shortestInvalidWord = "";
-        //int shortestLength = Integer.MAX_VALUE;
+        String highestScoringWord = "";
+        int highestScore = 0;
+        String shortestInvalidWord = "";
+        int shortestLength = Integer.MAX_VALUE;
 
-       // for (String theLine : words) {
-            //String[] lineWords = theLine.split(" ");
-           // for (String word : lineWords) {
-              //  int score = standardSet.getWordScore(word);
-                //System.out.println(word + ": " + score);
+        for (String theLine : words) {
+            String[] lineWords = theLine.split(" ");
+            for (String word : lineWords) {
+                int score = standardSet.getWordScore(word);
+                System.out.println(word + ": " + score);
 
-                // Check for highest scoring word
-               // if (score > highestScore) {
-               //     highestScoringWord = word;
-               //     highestScore = score;
-               // }
+                 // Check for highest scoring word
+                if (score > highestScore) {
+                    highestScoringWord = word;
+                    highestScore = score;
+                }
 
                 // Check for shortest invalid word
-                //if (score == -1 && word.matches("[a-zA-Z]+") && word.length() < shortestLength) {
-                   // shortestInvalidWord = word;
-                   // shortestLength = word.length();
-               // }
-           // }
-       // }
+                if (score == -1 && word.matches("[a-zA-Z]+") && word.length() < shortestLength) {
+                    shortestInvalidWord = word;
+                    shortestLength = word.length();
+                }
+            }
+        }
 
-      //  System.out.println("\nAnalysis of frankenstein.txt:");
-       // System.out.println("Highest scoring word: " + highestScoringWord + " (Score: " + highestScore + ")");
-       // System.out.println("Shortest invalid word: " + shortestInvalidWord);
+        System.out.println("\nAnalysis of frankenstein.txt:");
+        System.out.println("Highest scoring word: " + highestScoringWord + " (Score: " + highestScore + ")");
+        System.out.println("Shortest invalid word: " + shortestInvalidWord);
 
-        // } catch (IOException e) {
-       // System.err.println("Error reading frankenstein.txt: " + e.getMessage());
-        // }
+         } catch (IOException e) {
+        System.err.println("Error reading frankenstein.txt: " + e.getMessage());
+         }
 
         // Evaluate with the random Scrabble set
         try {
